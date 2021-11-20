@@ -6,8 +6,8 @@ import "../LatestArticles/latestarticles.css"
 import Toppost from "../TopPosts/toppost";
 
 export default function Fitness(){
-    const details = useContext(BlogContext);
-    const latestarticles = details.sort(function(a,b){
+    const blogdetails = useContext(BlogContext);
+    const latestarticles = blogdetails.sort(function(a,b){
         return new Date(b.date) - new Date(a.date);
     })
     return(

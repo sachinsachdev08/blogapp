@@ -4,14 +4,14 @@ import { BlogContext } from "../../Context/blogcontext";
 import "./thelatest.css"
 import { NavLink } from "react-router-dom";
 export default function Thelatest(){
-    const details = useContext(BlogContext)
+    const blogdetails = useContext(BlogContext)
     return(
         <div className="thelatest-main">
             <p className="main-title">The Latest</p>
             <hr className="main-hr"/>
             <div className="thelatest-flexbox">
               {
-                  details.slice(0,3).map((item)=>(
+                  blogdetails.slice(0,3).map((item)=>(
                     <div className="thelatest-div">
                     <div >
                         <img src={item.img1} className="img-div" alt=""/>

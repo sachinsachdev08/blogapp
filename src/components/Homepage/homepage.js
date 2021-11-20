@@ -4,8 +4,8 @@ import Latestarticles from "../LatestArticles/latestarticles"
 import Toppost from "../TopPosts/toppost"
 export default function Homepage(){
     return(
-        <>
-        <Navbar/>
+      <>
+      <Navbar/>
       <Gallery/>
       <Latestarticles/>
       <Toppost/>

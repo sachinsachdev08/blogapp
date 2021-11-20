@@ -5,8 +5,8 @@ import { BlogContext } from "../../Context/blogcontext";
 import { useState } from "react";
 
 export default function Toppost(){
-    const details = useContext(BlogContext)
-    const sorteddetails = details.sort(function(a,b){
+    const blogdetails = useContext(BlogContext)
+    const sorteddetails = blogdetails.sort(function(a,b){
         return (b.likes) - (a.likes)
     })
     console.log(sorteddetails)
@@ -34,7 +34,7 @@ export default function Toppost(){
               }
               {
                   (showMore) && (
-                    details.slice(3,5).map((item)=>(
+                    blogdetails.slice(3,5).map((item)=>(
                         <div className="top-div">
                         <div >
                             <img src={item.img1} className="img-div" alt=""/>

@@ -13,7 +13,7 @@ import { WhatsappIcon } from "react-share"
 
 
 function BlogPage(props){
-    const details = useContext(BlogContext)
+    const blogdetails = useContext(BlogContext)
     const { match } = props;
     const [showShare,setshowShare] = useState(false)
     const category = match.params.category;
@@ -26,7 +26,7 @@ function BlogPage(props){
            
            <div className="blog-main">
            {
-               details.filter(value=>value.category===category && value.likes>0).map((item)=>(
+               blogdetails.filter(value=>value.category===category && value.likes>0).map((item)=>(
                     <>
                     <p className="blog-title">{item.title}</p>
                     <p className="blog-description"> {item.description} </p>
@@ -72,9 +72,9 @@ function BlogPage(props){
                         <img className="user" src={userImage} alt="blog"/>
                         <div>
                             <p className="username">Author: {item.user} </p>
-                            <p className="details">Published on {item.date} </p>
-                            <p className="details">Student</p>
-                            <p className="details">On Siren since {item.joined} </p>
+                            <p className="details1">Published on {item.date} </p>
+                            <p className="details1">Student</p>
+                            <p className="details1">On Siren since {item.joined} </p>
                         </div>
                         
                     </div>

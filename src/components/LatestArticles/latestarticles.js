@@ -6,8 +6,8 @@ import "./latestarticles.css"
 
 
 export default function Latestarticles(){
-    const details = useContext(BlogContext);
-    const latestarticles = details.slice(0,5).sort(function(a,b){
+    const blogdetails = useContext(BlogContext);
+    const latestarticles = blogdetails.slice(0,5).sort(function(a,b){
         return new Date(b.date) - new Date(a.date);
     })
     const [showMore,setshowMore] = useState(false)

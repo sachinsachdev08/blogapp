@@ -8,6 +8,7 @@ import "./gallery.css"
 
 export default function Gallery() {
     const blogdetails = useContext(BlogContext);
+    console.log(blogdetails)
     const details1 = blogdetails.filter(value=>value.id===5 && value.likes>0);
     const details2 = blogdetails.filter(value=>value.id===1 && value.likes>0);
     const details3 = blogdetails.filter(value=>value.id===4 && value.likes>0);

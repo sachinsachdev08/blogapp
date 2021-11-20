@@ -18,7 +18,7 @@ export default function Toppost(){
             <div className="top-flexbox">
               {
                   sorteddetails.slice(0,3).map((item)=>(
-                    <div className="top-div">
+                    <div key={item.id} className="top-div">
                     <div >
                         <img src={item.img1} className="img-div" alt=""/>
                     </div>

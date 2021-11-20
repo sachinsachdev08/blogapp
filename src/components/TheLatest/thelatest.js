@@ -12,7 +12,7 @@ export default function Thelatest(){
             <div className="thelatest-flexbox">
               {
                   blogdetails.slice(0,3).map((item)=>(
-                    <div className="thelatest-div">
+                    <div key={item.id} className="thelatest-div">
                     <div >
                         <img src={item.img1} className="img-div" alt=""/>
                     </div>

@@ -19,7 +19,7 @@ export default function Latestarticles(){
                 <div className="comp-div">
                     {
                         latestarticles.slice(0,4).map((item)=>(
-                            <div>
+                            <div key={item.id}>
                                 <hr/>
                                 <div className="comp-flex">
                     

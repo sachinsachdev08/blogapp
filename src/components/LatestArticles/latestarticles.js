@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { useContext } from "react/cjs/react.development";
 import { BlogContext } from "../../Context/blogcontext";
 import "./latestarticles.css"
 

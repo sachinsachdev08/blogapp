@@ -1,13 +1,12 @@
-import React from "react";
+import React , { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { useContext } from "react/cjs/react.development";
 import { BlogContext } from "../../Context/blogcontext";
 import Thelatest from "../TheLatest/thelatest";
 import "./gallery.css"
 
 
 export default function Gallery() {
-    const blogdetails = useContext(BlogContext);
+    const blogdetails = useContext(BlogContext)
     console.log(blogdetails)
     const details1 = blogdetails.filter(value=>value.id===5 && value.likes>0);
     const details2 = blogdetails.filter(value=>value.id===1 && value.likes>0);

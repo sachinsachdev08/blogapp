@@ -42,18 +42,18 @@ function BlogPage(props){
                         {
                             (showShare) && (
                                 <div className="share-buttons">
-                                <FacebookShareButton url={`https://prep-blogapp.netlify.app/${item.category}/${item.title}`}
+                                <FacebookShareButton url={`https://prep-blogapp.netlify.app/${item.category}/${item.id}`}
                                  quote={`Checkout this blog on ${item.title}`}
                                  hashtag={item.tags.map((value)=>"#"+value)}
                                  >
                                     <FacebookIcon size= {30} round={true} logoFillColor="white" style={{marginRight:'5px', marginLeft:'5px'}} ></FacebookIcon>
                                 </FacebookShareButton>
-                                <WhatsappShareButton url={`https://prep-blogapp.netlify.app/${item.category}/${item.title}`}
+                                <WhatsappShareButton url={`https://prep-blogapp.netlify.app/${item.category}/${item.id}`}
                                 title={item.title}
                                 >
                                    <WhatsappIcon size= {30} round={true} logoFillColor="white" ></WhatsappIcon>
                                </WhatsappShareButton>
-                               <TwitterShareButton url={`https://prep-blogapp.netlify.app/${item.category}/${item.title}`}
+                               <TwitterShareButton url={`https://prep-blogapp.netlify.app/${item.category}/${item.id}`}
                                  title={`Checkout this blog on ${item.title}`}
                                  hashtags={item.tags.map((value)=>"#"+value)}
                                  >

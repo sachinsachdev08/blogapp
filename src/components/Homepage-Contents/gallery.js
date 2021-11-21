@@ -17,14 +17,14 @@ export default function Gallery() {
         <>
         <div className="gallery-main">
             <div>
-                <NavLink to={`/${details1[0].category}/${details1[0].title}`}><img src={details1[0].img1} className="gallery-1" alt="blog"/></NavLink>
+                <NavLink to={`/${details1[0].category}/${details1[0].id}`}><img src={details1[0].img1} className="gallery-1" alt="blog"/></NavLink>
             </div>
             <div className="gallery-2">
                 <div>
-                    <NavLink to={`/${details2[0].category}/${details2[0].title}`}><img className="img-2" src={details2[0].img1} alt="blog" /></NavLink>
+                    <NavLink to={`/${details2[0].category}/${details2[0].id}`}><img className="img-2" src={details2[0].img1} alt="blog" /></NavLink>
                 </div>
                 <div>
-                   <NavLink to={`/${details3[0].category}/${details3[0].title}`}> <img className="img-3" src={details3[0].img1} alt="blog" /></NavLink>
+                   <NavLink to={`/${details3[0].category}/${details3[0].id}`}> <img className="img-3" src={details3[0].img1} alt="blog" /></NavLink>
                 </div>
             </div>
 

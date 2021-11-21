@@ -22,7 +22,7 @@ function App() {
             <Route exact path="/Fitness" component={Fitness}></Route>
             <Route exact path="/Food" component={Food}></Route>
 
-            <Route exact path="/:category/:title" component={BlogPage}></Route>
+            <Route exact path="/:category/:id" component={BlogPage}></Route>
           </Switch>
         </BlogProvider>
       

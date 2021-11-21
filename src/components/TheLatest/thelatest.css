@@ -56,6 +56,10 @@ a:visited {
   margin-block-end: 0;
 }
 
+.blog-desp > a {
+  color: black;
+}
+
 @media screen and (max-width: 650px) {
   .thelatest-flexbox {
     display: block;

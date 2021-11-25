@@ -23,7 +23,7 @@ export default function Toppost(){
                         <img src={item.img1} className="img-div" alt=""/>
                     </div>
                     <div className="blog-desp">
-                        <NavLink to={`${item.category}/${item.id}`} exact>
+                        <NavLink to={`/${item.category}/${item.id}`} exact>
                         <p className="title1">{item.title}</p>
                         </NavLink>
                         <p className="description">{item.description} </p>
@@ -40,7 +40,7 @@ export default function Toppost(){
                             <img src={item.img1} className="img-div" alt=""/>
                         </div>
                         <div className="blog-desp">
-                            <NavLink to={`${item.category}/${item.id}`} exact>
+                            <NavLink to={`/${item.category}/${item.id}`} exact>
                             <p className="title1">{item.title}</p>
                             </NavLink>
                             <p className="description">{item.description} </p>

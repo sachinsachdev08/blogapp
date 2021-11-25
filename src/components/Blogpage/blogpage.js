@@ -1,4 +1,4 @@
-import { withRouter } from "react-router-dom";
+import { withRouter , NavLink } from "react-router-dom";
 import { useContext, useEffect, useState } from "react"
 import { BlogContext } from "../../Context/blogcontext";
 import Navbar from "../Navbar/navbar";
@@ -10,6 +10,7 @@ import { FacebookShareButton , TwitterShareButton ,TwitterIcon } from "react-sha
 import { FacebookIcon } from "react-share"
 import { WhatsappShareButton } from "react-share";
 import { WhatsappIcon } from "react-share"
+import "../TheLatest/thelatest.css"
 
 
 function BlogPage(props){
@@ -17,6 +18,11 @@ function BlogPage(props){
     const { match } = props;
     const [showShare,setshowShare] = useState(false)
     const category = match.params.category;
+
+    const gotoTop = (e)=>{
+        window.scrollTo(0, 0);
+    }
+
     useEffect(() => {
         window.scrollTo(0, 0);
       }, []);
@@ -83,6 +89,28 @@ function BlogPage(props){
                ))
            }
            </div>
+           <div className="thelatest-main">
+            <p className="main-title">You may also like</p>
+            <hr className="main-hr"/>
+            <div className="thelatest-flexbox">
+              {
+                  blogdetails.slice(1,4).map((item)=>(
+                    <div key={item.id} className="thelatest-div">
+                    <div >
+                        <img src={item.img1} className="img-div" alt=""/>
+                    </div>
+                    <div className="blog-desp">
+                        <NavLink to={`/${item.category}/${item.id}`} exact>
+                        <p onClick={gotoTop} className="title1">{item.title}</p>
+                        </NavLink>
+                        <p className="description">{item.description} </p>
+                        <p className="category"><span className="travel">{item.category}</span> / {item.date}</p>
+                    </div>
+                    </div>
+                  ))
+              }
+            </div>
+        </div>
        </div>
     )
 }

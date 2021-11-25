@@ -27,7 +27,7 @@ export default function Bollywood(){
                                 <img src={item.img1} className="img-div1" alt=""/>
                     
                             <div className="comp-desc">
-                                <NavLink to={`${item.category}/${item.id}`}>
+                                <NavLink to={`/${item.category}/${item.id}`}>
                                     <p className="comp-title">{item.title}</p>
                                 </NavLink>
                                 <p className="comp-description">{item.description}</p>

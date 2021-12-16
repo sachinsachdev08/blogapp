@@ -60,6 +60,10 @@ a:visited {
   color: black;
 }
 
+.title1:hover .thelatest-div {
+  background-color: gray;
+}
+
 @media screen and (max-width: 650px) {
   .thelatest-flexbox {
     display: block;

@@ -5,7 +5,7 @@ import Navbar from "../Navbar/navbar";
 import "./blogpage.css"
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ShareIcon from '@material-ui/icons/Share';
-import userImage from "./user.png"
+import userImage from "./user1.png"
 import { FacebookShareButton , TwitterShareButton ,TwitterIcon } from "react-share";
 import { FacebookIcon } from "react-share"
 import { WhatsappShareButton } from "react-share";
@@ -17,6 +17,8 @@ function BlogPage(props){
     const blogdetails = useContext(BlogContext)
     const { match } = props;
     const [showShare,setshowShare] = useState(false)
+    const id = match.params.id;
+    console.log(id)
     const category = match.params.category;
 
     const gotoTop = (e)=>{
@@ -32,9 +34,19 @@ function BlogPage(props){
            
            <div className="blog-main">
            {
-               blogdetails.filter(value=>value.category===category && value.likes>0).map((item)=>(
-                    <>
+               blogdetails.filter(value=>value.category===category && value.id===+id).map((item)=>(
+                    <div key={item.id}>
+                    
                     <p className="blog-title">{item.title}</p>
+                    <div className="user-flex">
+                        <img className="user" src={userImage} alt="blog"/>
+                        <div>
+                            <p className="username">Author: {item.user} </p>
+                            <p className="details1">Published on {item.date} </p>
+                            <p className="details1">2 min read</p>
+                        </div>
+                        
+                    </div>
                     <p className="blog-description"> {item.description} </p>
                     <img className="blog-image" src={item.img1} alt="blog"/>
                     <p className="blog-para">{item.paragraph}</p>
@@ -84,7 +96,7 @@ function BlogPage(props){
                         </div>
                         
                     </div>
-                    </>
+                    </div>
                    
                ))
            }

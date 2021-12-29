@@ -1,6 +1,5 @@
-import { withRouter , NavLink } from "react-router-dom";
-import { useContext, useEffect, useState } from "react"
-import { BlogContext } from "../../Context/blogcontext";
+import { withRouter } from "react-router-dom";
+import { useEffect, useState } from "react"
 import Navbar from "../Navbar/navbar";
 import "./blogpage.css"
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
@@ -11,30 +10,30 @@ import { FacebookIcon } from "react-share"
 import { WhatsappShareButton } from "react-share";
 import { WhatsappIcon } from "react-share"
 import "../TheLatest/thelatest.css"
+import axios from "axios";
+import Toppost from "../TopPosts/toppost";
 
 
 function BlogPage(props){
-    const blogdetails = useContext(BlogContext)
+    const [ backend , setBackend ] = useState([]);
     const { match } = props;
     const [showShare,setshowShare] = useState(false)
     const id = match.params.id;
     console.log(id)
     const category = match.params.category;
 
-    const gotoTop = (e)=>{
-        window.scrollTo(0, 0);
-    }
-
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, []);
+        axios.get(`http://localhost:5000/api/v1/${category}/${id}`)
+        .then((res)=>setBackend(res.data));
+      }, [category,id]);
     return(
        <div>
            <Navbar/>
            
            <div className="blog-main">
            {
-               blogdetails.filter(value=>value.category===category && value.id===+id).map((item)=>(
+               backend.map((item)=>(
                     <div key={item.id}>
                     
                     <p className="blog-title">{item.title}</p>
@@ -101,28 +100,7 @@ function BlogPage(props){
                ))
            }
            </div>
-           <div className="thelatest-main">
-            <p className="main-title">You may also like</p>
-            <hr className="main-hr"/>
-            <div className="thelatest-flexbox">
-              {
-                  blogdetails.slice(1,4).map((item)=>(
-                    <div key={item.id} className="thelatest-div">
-                    <div >
-                        <img src={item.img1} className="img-div" alt=""/>
-                    </div>
-                    <div className="blog-desp">
-                        <NavLink to={`/${item.category}/${item.id}`} exact>
-                        <p onClick={gotoTop} className="title1">{item.title}</p>
-                        </NavLink>
-                        <p className="description">{item.description} </p>
-                        <p className="category"><span className="travel">{item.category}</span> / {item.date}</p>
-                    </div>
-                    </div>
-                  ))
-              }
-            </div>
-        </div>
+          <Toppost/>
        </div>
     )
 }

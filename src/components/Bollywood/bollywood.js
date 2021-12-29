@@ -1,15 +1,20 @@
 import { NavLink } from "react-router-dom";
 import Navbar from "../Navbar/navbar";
-import { useContext } from "react";
-import { BlogContext } from "../../Context/blogcontext";
+import { useState ,  useEffect } from "react";
 import "../LatestArticles/latestarticles.css"
 import Toppost from "../TopPosts/toppost";
+import axios from "axios";
 
 export default function Bollywood(){
-    const blogdetails = useContext(BlogContext);
-    const latestarticles = blogdetails.sort(function(a,b){
-        return new Date(b.date) - new Date(a.date);
-    })
+    const [ backend , setBackend ] = useState([]);
+    
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        axios.get('http://localhost:5000/api/v1/blogs/Bollywood')
+        .then((res)=>setBackend(res.data));
+      }, []);
+      console.log(backend)
         return(
         <>
         <Navbar/>
@@ -19,8 +24,8 @@ export default function Bollywood(){
             <div className="latest-flexbox">
                 <div className="comp-div">
                     {
-                        latestarticles.filter(value=>value.category==="Bollywood").map((item)=>(
-                            <div>
+                        backend.filter(value=>value.category==="Bollywood").map((item)=>(
+                            <div key={item.id}>
                                 <hr/>
                                 <div className="comp-flex">
                     

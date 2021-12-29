@@ -1,16 +1,25 @@
 import { NavLink } from "react-router-dom";
 import Navbar from "../Navbar/navbar";
-import { useContext } from "react";
-import { BlogContext } from "../../Context/blogcontext";
+import { useEffect ,  useState } from "react";
 import "../LatestArticles/latestarticles.css"
 import Toppost from "../TopPosts/toppost";
+import axios from "axios";
 
 export default function Food(){
-    const blogdetails = useContext(BlogContext);
-    const latestarticles = blogdetails.sort(function(a,b){
-        return new Date(b.date) - new Date(a.date);
-    })
-    return(
+    const [ backend , setBackend ] = useState([])
+    
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        axios.get('http://localhost:5000/api/v1/blogs/Food')
+        .then((res)=>setBackend(res.data));
+      }, []);
+    
+    if(backend.length === 0){
+        return null;
+    }
+    else{
+        console.log(backend.filtered);
+        return(
         <>
         <Navbar/>
         <div className="latest-main">
@@ -19,7 +28,7 @@ export default function Food(){
             <div className="latest-flexbox">
                 <div className="comp-div">
                     {
-                        latestarticles.filter(value=>value.category==="Food").map((item)=>(
+                        backend.filter(value=>value.category==="Food").map((item)=>(
                             <div>
                                 <hr/>
                                 <div className="comp-flex">
@@ -48,4 +57,5 @@ export default function Food(){
         
         </>
     )
+    }
 }

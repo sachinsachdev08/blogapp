@@ -29,10 +29,12 @@ export default class Navbar extends React.Component{
                     )
                 }
             <div className="nav-main">
+                <NavLink to ="/">
                 <div className="siren">
                     <div className="rotate">The</div><div className="heading"> Siren</div>
                     
                 </div>
+                </NavLink>
                 <hr className="res-hr"/>
                 
                 <div className="nav">

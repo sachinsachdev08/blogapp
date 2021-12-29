@@ -1,30 +1,43 @@
-import React , { useContext } from "react";
+import React , { useContext , useEffect , useState } from "react";
 import { NavLink } from "react-router-dom";
 import { BlogContext } from "../../Context/blogcontext";
 import Thelatest from "../TheLatest/thelatest";
 import "./gallery.css"
+import axios from "axios";
 
 
 export default function Gallery() {
+    const [ backend , setBackend ] = useState([]);
     const blogdetails = useContext(BlogContext)
     console.log(blogdetails)
-    const details1 = blogdetails.filter(value=>value.id===5 && value.likes>0);
-    const details2 = blogdetails.filter(value=>value.id===1 && value.likes>0);
-    const details3 = blogdetails.filter(value=>value.id===4 && value.likes>0);
+    const details1 = blogdetails.filter(value=>value.id===5);
+    const details2 = blogdetails.filter(value=>value.id===1);
+    const details3 = blogdetails.filter(value=>value.id===4);
 
     console.log(details1)
-    return(
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        axios.get('http://localhost:5000/api/v1/gallery')
+        .then((res)=>setBackend(res.data));
+      },[]);
+      console.log(backend)
+
+    if(backend.length===0){
+        return null;
+    }
+    else{
+         return(
         <>
         <div className="gallery-main">
             <div>
-                <NavLink to={`/${details1[0].category}/${details1[0].id}`}><img src={details1[0].img1} className="gallery-1" alt="blog"/></NavLink>
+                <NavLink to={`/${backend[1].category}/${backend[1].id}`}><img src={backend[1].img1} className="gallery-1" alt="blog"/></NavLink>
             </div>
             <div className="gallery-2">
                 <div>
-                    <NavLink to={`/${details2[0].category}/${details2[0].id}`}><img className="img-2" src={details2[0].img1} alt="blog" /></NavLink>
+                    <NavLink to={`/${backend[2].category}/${backend[2].id}`}><img className="img-2" src={backend[2].img1} alt="blog" /></NavLink>
                 </div>
                 <div>
-                   <NavLink to={`/${details3[0].category}/${details3[0].id}`}> <img className="img-3" src={details3[0].img1} alt="blog" /></NavLink>
+                   <NavLink to={`/${backend[0].category}/${backend[0].id}`}> <img className="img-3" src={backend[0].img1} alt="blog" /></NavLink>
                 </div>
             </div>
 
@@ -35,4 +48,6 @@ export default function Gallery() {
         
         </>
     )
+    }
+   
 }

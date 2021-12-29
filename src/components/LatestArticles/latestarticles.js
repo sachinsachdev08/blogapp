@@ -1,15 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { BlogContext } from "../../Context/blogcontext";
-import "./latestarticles.css"
+import "./latestarticles.css";
+import axios from "axios";
 
 
 export default function Latestarticles(){
-    const blogdetails = useContext(BlogContext);
-    const latestarticles = blogdetails.slice(0,5).sort(function(a,b){
-        return new Date(b.date) - new Date(a.date);
-    })
-    const [showMore,setshowMore] = useState(false)
+    const [ backend , setBackend ] = useState([]);
+    
+    const [showMore,setshowMore] = useState(false);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        axios.get('http://localhost:5000/api/v1/latest')
+        .then((res)=>setBackend(res.data));
+      }, []);
     return(
         <div className="latest-main">
             <p className="main-title">Latest Articles</p>
@@ -17,7 +20,7 @@ export default function Latestarticles(){
             <div className="latest-flexbox">
                 <div className="comp-div">
                     {
-                        latestarticles.slice(0,4).map((item)=>(
+                        backend.slice(0,4).map((item)=>(
                             <div key={item.id}>
                                 <hr/>
                                 <div className="comp-flex">
@@ -37,7 +40,7 @@ export default function Latestarticles(){
                     }
                     {
                         (showMore) && (
-                            latestarticles.slice(4,6).map((item)=>(
+                            backend.slice(4,6).map((item)=>(
                                 <div>
                                     <hr/>
                                     <div className="comp-flex">

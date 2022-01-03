@@ -1,17 +1,15 @@
 import { NavLink } from "react-router-dom";
 import Navbar from "../Navbar/navbar";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { BlogContext } from "../../Context/blogcontext";
 import "../LatestArticles/latestarticles.css"
 import Toppost from "../TopPosts/toppost";
-import axios from "axios";
 
 export default function Fitness(){
-    const [ backend , setBackend ] = useState([]);
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        axios.get('http://localhost:5000/api/v1/blogs/Technology')
-        .then((res)=>setBackend(res.data));
-      }, []);
+    const blogdetails = useContext(BlogContext);
+    const latestarticles = blogdetails.sort(function(a,b){
+        return new Date(b.date) - new Date(a.date);
+    })
     return(
         <>
         <Navbar/>
@@ -21,7 +19,7 @@ export default function Fitness(){
             <div className="latest-flexbox">
                 <div className="comp-div">
                     {
-                        backend.filter(value=>value.category==="Technology").map((item)=>(
+                        latestarticles.filter(value=>value.category==="Technology").map((item)=>(
                             <div>
                                 <hr/>
                                 <div className="comp-flex">

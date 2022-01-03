@@ -1,24 +1,23 @@
-import { useEffect } from "react";
+import { useContext } from "react";
 import "./top.css"
 import { NavLink } from "react-router-dom";
+import { BlogContext } from "../../Context/blogcontext";
 import { useState } from "react";
-import axios from "axios";
 
 export default function Toppost(){
-    const [ backend , setBackend ] = useState([]);
-    const [showMore,setshowMore] = useState(false);
-    useEffect(() => {
-        window.scrollTo(0, 0);
-        axios.get('http://localhost:5000/api/v1/top')
-        .then((res)=>setBackend(res.data));
-      }, []);
+    const blogdetails = useContext(BlogContext)
+    const sorteddetails = blogdetails.sort(function(a,b){
+        return (b.likes) - (a.likes)
+    })
+    console.log(sorteddetails)
+    const [showMore,setshowMore] = useState(false)
     return(
         <div className="top-main">
             <p className="top-title">Top Post</p>
             <hr className="top-hr"/>
             <div className="top-flexbox">
               {
-                  backend.slice(0,3).map((item)=>(
+                  sorteddetails.slice(0,3).map((item)=>(
                     <div key={item.id} className="top-div">
                     <div >
                         <img src={item.img1} className="img-div" alt=""/>
@@ -35,7 +34,7 @@ export default function Toppost(){
               }
               {
                   (showMore) && (
-                    backend.slice(3,5).map((item)=>(
+                    blogdetails.slice(3,5).map((item)=>(
                         <div className="top-div">
                         <div >
                             <img src={item.img1} className="img-div" alt=""/>

@@ -11,6 +11,8 @@ export default function Gallery() {
     const blogdetails = useContext(BlogContext)
     console.log(blogdetails)
     const details1 = blogdetails.filter(value=>value.id===5);
+    const details2 = blogdetails.filter(value=>value.id===1);
+    const details3 = blogdetails.filter(value=>value.id===4);
 
     console.log(details1)
     useEffect(() => {
